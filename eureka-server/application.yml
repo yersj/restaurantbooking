@@ -1,0 +1,18 @@
+server:
+  port: 8761  # The default port for Eureka Server
+
+spring:
+  application:
+    name: eureka-server
+  cloud:
+    discovery:
+      enabled: true
+
+eureka:
+  client:
+    fetch-registry: false  # Disable fetching registry as this is a server
+    register-with-eureka: false  # Disable registration for this server itself
+  server:
+    enable-self-preservation: false  # Disable self-preservation for simplicity in dev
+    eviction-interval-timer-in-ms: 30000  # Set the interval for eviction check
+    min-eviction-interval-timer-in-ms: 30000  # Set the minimum eviction interval

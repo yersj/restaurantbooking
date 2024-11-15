@@ -1,0 +1,28 @@
+server:
+  port: 8080  # Port for the API Gateway
+
+spring:
+  cloud:
+    gateway:
+      # Define routes to the services
+      routes:
+        - id: user-service
+          uri: http://localhost:8081  # UserService URI (change it to the actual service URI)
+          predicates:
+            - Path=/api/users/**  # This route will be forwarded to UserService
+
+        - id: booking-service
+          uri: http://localhost:8082  # BookingService URI (change it to the actual service URI)
+          predicates:
+            - Path=/api/bookings/**  # This route will be forwarded to BookingService
+
+        - id: notification-service
+          uri: http://localhost:8083  # NotificationService URI (change it to the actual service URI)
+          predicates:
+            - Path=/api/notifications/**  # This route will be forwarded to NotificationService
+
+      # Optional filters for custom behaviors, such as logging
+      default-filters:
+        - name: AddRequestHeader
+          args:
+            X-Request-Foo: Bar
